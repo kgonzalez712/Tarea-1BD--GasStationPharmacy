@@ -2,7 +2,7 @@
 var request = new XMLHttpRequest();
 
 // Open a new connection, using the GET request on the URL endpoint
-request.open('GET', '192.168.0.109:63786/api/ClientPH/3444', true);
+request.open('GET', 'http://localhost:63786/api/ClientPH', true);
 
 request.onload = function () {
   alert("jason");

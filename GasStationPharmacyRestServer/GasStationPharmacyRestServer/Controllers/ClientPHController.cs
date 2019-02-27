@@ -5,6 +5,8 @@ using System.Net;
 using System.Net.Http;
 using System.Web.Http;
 using GasStationPharmacyRestServer.Models;
+using System.Web.Http.Cors;
+
 
 namespace GasStationPharmacyRestServer.Controllers
 {
