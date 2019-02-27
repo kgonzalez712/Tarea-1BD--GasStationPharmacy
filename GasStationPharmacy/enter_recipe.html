@@ -1,0 +1,146 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset= "UTF-8"/>
+	<title>Phishel Pharmacy</title>
+	<link rel="stylesheet" type="text/css" href="css/phishel.css">
+	<script type="text/javascript" src="js/phisel.js"></script>
+	<style type="text/css">
+		.thumb{
+			height: 400px;
+			width: 100%;
+		}
+		body{
+			background-color: rgba(234,109,18,0.1);
+		}
+	</style>
+</head>
+<body>
+	<header>
+		<section id="navBar">
+			<span>Phishel</span>
+			<nav class="aright">
+				<a href="register.html" >Register</a>
+				<a href="">Log in</a>
+			</nav>
+		</section>
+		<section id="title">
+			<h1>Phishel Pharmacy</h1>
+			<nav>
+				<a href="home.html">Home</a>
+				<a href="enter_recipe.html" class="active">Enter Recipe</a>
+				<a href="order.html">Order</a>				
+			</nav>
+		</section>
+	</header>
+	<form id="enter_recipe">
+		<fieldset>
+			<legend>Enter Recipe</legend>
+			<div id="previewEnter"></div>			
+			<label>
+				Recipe Number
+				<input class="input" type="Number" name="recipeNumber" autocomplete="off" required>
+			</label>
+			<label>
+				Doctor
+				<input class="input" type="text" name="doctorName" autocomplete="off" required>
+			</label>
+			<label>
+				Pre-registered Medications
+				<input class="input" type="text" name="medications" autocomplete="off" required>
+			</label>
+			<input type="submit" name="submit" value="Add" class="choice">
+			<input type="reset" name="recet" value="Reset" class="choice">
+			<input type="file" name="file" class="choice" id="file">
+			<script type="text/javascript">
+				function archivo(evt) {
+      				var files = evt.target.files; // FileList object
+       
+        			//Obtenemos la imagen del campo "file". 
+      				for (var i = 0, f; f = files[i]; i++) {         
+           				//Solo admitimos imágenes.
+           				if (!f.type.match('image.*')) {
+               				continue;
+           				}
+       
+           				var reader = new FileReader();
+           
+           				reader.onload = (function(theFile) {
+               				return function(e) {
+               					// Creamos la imagen.
+                      			document.getElementById("previewEnter").innerHTML = ['<img class= "thumb" src="', e.target.result,'" title="', escape(theFile.name), '"/>'].join('');
+               				};
+           				})(f);
+ 
+           				reader.readAsDataURL(f);
+       				}
+				}
+             
+     			 document.getElementById('file').addEventListener('change', archivo, false);
+			</script>
+			<label>Update a recipe? <input type="checkbox" name="update" id="update" onchange="updateRecipe()"></label>
+			<label>Eliminate a recipe? <input type="checkbox" name="eliminate" id="eliminate" onchange="eliminateRecipe()"></label>
+		</fieldset>		
+	</form>
+	<form id="update_recipe">
+		<fieldset>
+			<legend>Update Recipe</legend>
+			<div id="previewUpdate"></div>
+			<label>
+				Recipe Number
+				<input class="input" type="Number" name="recipeNumber" autocomplete="off" required>
+			</label>
+			<label>
+				Doctor
+				<input class="input" type="text" name="doctorName" autocomplete="off" required>
+			</label>
+			<label>
+				Pre-registered Medications
+				<input class="input" type="text" name="medications" autocomplete="off" required>
+			</label>
+			<input type="submit" name="submit" value="Update" class="choice">
+			<input type="reset" name="recet" value="Reset" class="choice">
+			<input type="file" name="file" class="choice" id="fileU">
+			<script type="text/javascript">
+				function archivo(evt) {
+      				var files = evt.target.files; // FileList object
+       
+        			//Obtenemos la imagen del campo "file". 
+      				for (var i = 0, f; f = files[i]; i++) {         
+          				//Solo admitimos imágenes.
+           				if (!f.type.match('image.*')) {
+                			continue;
+           				}
+       
+           				var reader = new FileReader();
+           
+           				reader.onload = (function(theFile) {
+               				return function(e) {
+               				// Creamos la imagen.
+                      		document.getElementById("previewUpdate").innerHTML = ['<img class= "thumb" src="', e.target.result,'" title="', escape(theFile.name), '"/>'].join('');
+               				};
+           				})(f);
+ 
+           				reader.readAsDataURL(f);
+       				}
+				}
+             
+      			document.getElementById('fileU').addEventListener('change', archivo, false);
+			</script>
+		</fieldset>		
+	</form>
+	<form id="eliminate_recipe">
+		<fieldset>
+			<legend>Eliminate Recipe</legend>
+			<label>
+				Recipe Number
+				<input class="input" type="Number" name="recipeNumber" autocomplete="off" required>
+			</label>
+			<input type="submit" name="submit" value="Delete" class="choice">
+		</fieldset>		
+	</form>
+</body>
+<footer>
+	&copy;Derechos Reservados
+</footer>
+</html>
