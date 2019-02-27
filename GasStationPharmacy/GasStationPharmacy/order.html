@@ -1,0 +1,160 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset= "UTF-8"/>
+	<title>Phishel Pharmacy</title>
+	<link rel="stylesheet" type="text/css" href="css/phishel.css">
+	<link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.7.2/css/all.css" integrity="sha384-fnmOCqbTlWIlj8LyTjo7mOUStjsKC4pOpQbqyi7RrhN7udi9RwhKkMHpvLbHG9Sr" crossorigin="anonymous">
+	<script type="text/javascript" src="js/phiselOrder.js"></script>
+</head>
+<body>
+	<header>
+		<section id="navBar">
+			<span>Phishel</span>
+			<nav class="aright">
+				<a href="register.html" >Register</a>
+				<a href="logIn.html">Log in</a>
+				<a href="account.html"><i class="fas fa-user fa-1x"></i></a>
+			</nav>
+		</section>
+		<section id="title">
+			<h1>Phishel Pharmacy</h1>
+			<nav>
+				<a href="home.html">Home</a>
+				<a href="enter_recipe.html">Enter Recipe</a>
+				<a href="order.html" class="active">Order</a>				
+			</nav>
+		</section>
+	</header>
+	<form id="enter_recipe">
+		<fieldset>
+			<legend>Order</legend>			
+			<label>
+				Pickup Branch
+				<select required>
+					<option value="">Choose...</option>
+					<option value="Autofarmacia Escazú">Autofarmacia Escazú</option>
+					<option value="Automercado Alajuela">Automercado Alajuela</option>
+					<option value="Automercado Escazú">Automercado Escazú</option>
+					<option value="Automercado Guadalupe">Automercado Guadalupe</option>
+					<option value="Automercado Heredia">Automercado Heredia</option>
+					<option value="Automercado Lindora">Automercado Lindora</option>
+					<option value="Automercado Moravia">Automercado Moravia</option>
+					<option value="Automercado Río Oro">Automercado Río Oro</option>
+					<option value="Automercado San Francisco de Heredia">Automercado San Francisco de Heredia</option>
+					<option value="Automercado Santo Domingo">Automercado Santo Domingo</option>
+				</select>
+			</label>
+			<label>
+				Name
+				<input class="input" type="text" name="clientName" autocomplete="off" required>
+			</label>
+			<label>
+				Preferred Phone
+				<input class="input" type="text" name="medications" pattern="[0-9]{8}" autocomplete="off" required>
+			</label>
+			<label>
+				<label>
+					Aspirina<input type="checkbox" name="aspirina" style="display: inline-block; margin-left: 4%" class="medicine" id="aspirina" onchange="activate(this,'aspirinaCount')"><input type="number" style="width: 30px;" name="aspirinaCount" id="aspirinaCount" disabled>
+				</label>
+				<label>
+					Acetaminofen<input type="checkbox" name="acetaminofen" style="display: inline-block; margin-left: 4%" class="medicine" id="acetaminofen" onchange="activate(this,'acetaminofenCount')"><input type="number" style="width: 30px;" name="acetaminofenCount" id="acetaminofenCount" disabled>
+				</label>
+				<label>
+					Ibuprofeno<input type="checkbox" name="ibuprofeno" style="display: inline-block; margin-left: 4%" class="medicine" id="ibuprofeno" onchange="activate(this,'ibuprofenoCount')"><input type="number" style="width: 30px;" name="ibuprofenoCount" id="ibuprofenoCount" disabled>
+				</label>
+				<label>
+					Amoxicilina<input type="checkbox" name="amoxicilina" style="display: inline-block; margin-left: 4%" class="medicine" id="amoxicilina" onchange="activate(this,'amoxicilinaCount')"><input type="number" style="width: 30px;" name="amoxicilinaCount" id="amoxicilinaCount" disabled>
+				</label>
+				<label>
+					Ramipril<input type="checkbox" name="ramipril" style="display: inline-block; margin-left: 4%" class="medicine" id="ramipril" onchange="activate(this,'ramiprilCount')"><input type="number" style="width: 30px;" name="ramiprilCount" id="ramiprilCount" disabled>
+				</label>
+			</label>
+			<label>
+				Pickup Time
+				<input class="input" type="time" name="time" autocomplete="off" required>
+			</label>
+			<label>
+				Put the order's Id
+				<input class="input" type="number" name="number" autocomplete="off" required>
+			</label>
+			<input type="file" name="file" id="file">
+			<input type="submit" name="submit" value="Order" class="choice" onclick="return check();">
+			<input type="reset" name="recet" value="Reset" class="choice">
+			<label>Update an order? <input type="checkbox" name="update" id="update" onchange="updateRecipe()"></label>
+			<label>Eliminate an order? <input type="checkbox" name="eliminate" id="eliminate" onchange="eliminateRecipe()"></label>
+		</fieldset>		
+	</form>
+	<form id="update_recipe">
+		<fieldset>
+			<legend>Update Order</legend>
+			<div id="previewUpdate"></div>
+			<label>
+				Order's Id
+				<input class="input" type="number" name="number" autocomplete="off" required>
+			</label>
+			<label>
+				Pickup Branch
+				<select required>
+					<option value="">Choose...</option>
+					<option value="Autofarmacia Escazú">Autofarmacia Escazú</option>
+					<option value="Automercado Alajuela">Automercado Alajuela</option>
+					<option value="Automercado Escazú">Automercado Escazú</option>
+					<option value="Automercado Guadalupe">Automercado Guadalupe</option>
+					<option value="Automercado Heredia">Automercado Heredia</option>
+					<option value="Automercado Lindora">Automercado Lindora</option>
+					<option value="Automercado Moravia">Automercado Moravia</option>
+					<option value="Automercado Río Oro">Automercado Río Oro</option>
+					<option value="Automercado San Francisco de Heredia">Automercado San Francisco de Heredia</option>
+					<option value="Automercado Santo Domingo">Automercado Santo Domingo</option>
+				</select>
+			</label>
+			<label>
+				Name
+				<input class="input" type="text" name="clientName" autocomplete="off" required>
+			</label>
+			<label>
+				Preferred Phone
+				<input class="input" type="text" name="medications" pattern="[0-9]{8}" autocomplete="off" required>
+			</label>
+			<label>
+				<label>
+					Aspirina<input type="checkbox" name="aspirina" style="display: inline-block; margin-left: 4%" id="aspirina" class="medicineUpdate" onchange="activate(this,'aspirinaCount')"><input type="number" style="width: 30px;" name="aspirinaCount" id="aspirinaCount" disabled>
+				</label>
+				<label>
+					Acetaminofen<input type="checkbox" name="acetaminofen" style="display: inline-block; margin-left: 4%" class="medicineUpdate" id="acetaminofen" onchange="activate(this,'acetaminofenCount')"><input type="number" style="width: 30px;" name="acetaminofenCount" id="acetaminofenCount" disabled>
+				</label>
+				<label>
+					Ibuprofeno<input type="checkbox" name="ibuprofeno" style="display: inline-block; margin-left: 4%" class="medicineUpdate" id="ibuprofeno" onchange="activate(this,'ibuprofenoCount')"><input type="number" style="width: 30px;" name="ibuprofenoCount" id="ibuprofenoCount" disabled>
+				</label>
+				<label>
+					Amoxicilina<input type="checkbox" name="amoxicilina" style="display: inline-block; margin-left: 4%" class="medicineUpdate" id="amoxicilina" onchange="activate(this,'amoxicilinaCount')"><input type="number" style="width: 30px;" name="amoxicilinaCount" id="amoxicilinaCount" disabled>
+				</label>
+				<label>
+					Ramipril<input type="checkbox" name="ramipril" style="display: inline-block; margin-left: 4%" class="medicineUpdate" id="ramipril" onchange="activate(this,'ramiprilCount')"><input type="number" style="width: 30px;" name="ramiprilCount" id="ramiprilCount" disabled>
+				</label>
+			</label>
+			<label>
+				Pickup Time
+				<input class="input" type="time" name="time" autocomplete="off" required>
+			</label>
+			<input type="file" name="file" id="fileU">
+			<input type="submit" name="submit" value="Update" class="choice" onclick="return checkUpdate()">
+			<input type="reset" name="recet" value="Reset" class="choice">
+		</fieldset>		
+	</form>
+	<form id="eliminate_recipe">
+		<fieldset>
+			<legend>Eliminate Order</legend>
+			<label>
+				Order's Id
+				<input class="input" type="Number" name="recipeNumber" autocomplete="off" required>
+			</label>
+			<input type="submit" name="submit" value="Delete" class="choice">
+		</fieldset>		
+	</form>
+</body>
+<footer>
+	&copy;Derechos Reservados
+</footer>
+</html>
