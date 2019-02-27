@@ -1,16 +1,16 @@
-// Create a request variable and assign a new XMLHttpRequest object to it.
-var request = new XMLHttpRequest();
+// // Create a request variable and assign a new XMLHttpRequest object to it.
+// var request = new XMLHttpRequest();
 
-// Open a new connection, using the GET request on the URL endpoint
-request.open('GET', 'http://localhost:63786/api/ClientPH', true);
+// // Open a new connection, using the GET request on the URL endpoint
+// request.open('GET', 'http//192.168.0.109:63786/api/ClientPH/3444', true);
 
-request.onload = function () {
-  alert("jason");
-}
+// request.onload = function () {
+//   alert("jason");
+// }
 
 
-// Send request
-request.send();
+// // Send request
+// request.send();
 
 function updateRecipe(){
 	if(document.getElementById("update").checked){
@@ -29,4 +29,5 @@ function eliminateRecipe(){
 		document.getElementById("eliminate_recipe").style.display = "none";
 	}
 }
+
 

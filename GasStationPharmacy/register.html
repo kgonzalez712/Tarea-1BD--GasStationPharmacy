@@ -17,7 +17,7 @@
 			<h1>Registration</h1>
 		</section>
 	</header>
-	<form id="registration">
+	<form id="registration" novalidate>
 		<fieldset>
 			<legend>Register</legend>
 			<label>
@@ -48,8 +48,9 @@
 				Record
 				<input class="input" type="text" name="record" autocomplete="off" required>
 			</label>
-			<input type="submit" name="submit" value="Add" class="choice">
+			<input type="submit" name="submit" value="Register" class="choice">
 			<input type="reset" name="recet" value="Reset" class="choice">
+			<input type="button" value="Continue" class=" choise" id="choise" onclick="location.href='logIn.html'">
 		</fieldset>
 	</form>
 </body>
