@@ -26,6 +26,7 @@ namespace GasStationPharmacyRestServer.Models
             a.Client_Additional_Information = "Tuberculosis";
             a.Account_Password = "123344";
             a.Account_Email = "prueba@email.com";
+            a.Client_Phone_Number = 7894566;
 
 
             b.Client_ID = 3444;
@@ -36,6 +37,7 @@ namespace GasStationPharmacyRestServer.Models
             b.Client_Additional_Information = "Tuberculosis b";
             b.Account_Password = "123344";
             b.Account_Email = "prueba@email.com";
+            b.Client_Phone_Number = 789456;
 
             clientListLaBomba.Add(a);
             clientListLaBomba.Add(b);
@@ -55,6 +57,8 @@ namespace GasStationPharmacyRestServer.Models
                 return client_reg;
             }
         }
+
+// ------------------------------------------ La Bomba ------------------------------------------------------------------------------
 
 
         public void AddLaBombaClient(Client client)
@@ -157,11 +161,23 @@ namespace GasStationPharmacyRestServer.Models
             }
         }
 
+        public void UpdateLaBombaClientBirthDate(Client client, DateTime bd)
+        {
+            for (int i = 0; i < clientListLaBomba.Count; i++)
+            {
+                Client clnt = clientListLaBomba.ElementAt(i);
+                if (clnt.Client_ID.Equals(client.Client_ID))
+                {
+                    clnt.Client_Birthday = bd;
+                }
+            }
+        }
+
         public void UpdateLaBomaClientPassword(Client client, string password)
         {
-            for (int i = 0; i < clientListPhischel.Count; i++)
+            for (int i = 0; i < clientListLaBomba.Count; i++)
             {
-                Client clnt = clientListPhischel.ElementAt(i);
+                Client clnt = clientListLaBomba.ElementAt(i);
                 if (clnt.Client_ID.Equals(client.Client_ID))
                 {
                     clnt.Account_Password = password;
@@ -169,7 +185,85 @@ namespace GasStationPharmacyRestServer.Models
             }
         }
 
+        public void UpdateLaBomaClientPassword(Client client, DateTime bd)
+        {
+            for (int i = 0; i < clientListLaBomba.Count; i++)
+            {
+                Client clnt = clientListLaBomba.ElementAt(i);
+                if (clnt.Client_ID.Equals(client.Client_ID))
+                {
+                    clnt.Client_Birthday = bd;
+                }
+            }
+        }
 
+        public void UpdateLaBombaClientPhone(Client client, int num)
+        {
+            for (int i = 0; i < clientListLaBomba.Count; i++)
+            {
+                Client clnt = clientListLaBomba.ElementAt(i);
+                if (clnt.Client_ID.Equals(client.Client_ID))
+                {
+                    clnt.Client_Phone_Number = num;
+                }
+            }
+        }
+
+        public List<Medicine> GetLaBombaClientMedicineList(int id)
+        {
+            for (int i = 0; i < clientListLaBomba.Count; i++)
+            {
+                Client clnt = clientListLaBomba.ElementAt(i);
+                if (clnt.Client_ID.Equals(id))
+                {
+
+                    return clnt.medList;
+                }
+            }
+            return null;
+        }
+
+        public void AddLaBombaClientMed(Client client, Medicine med)
+        {
+            for (int i = 0; i < clientListLaBomba.Count; i++)
+            {
+                Client clnt = clientListLaBomba.ElementAt(i);
+                if (clnt.Client_ID.Equals(client.Client_ID))
+                {
+                    clnt.medList.Add(med);
+                }
+            }
+        }
+
+        public void RemoveLaBombaClientMed(Client client, Medicine med)
+        {
+            for (int i = 0; i < clientListLaBomba.Count; i++)
+            {
+                Client clnt = clientListLaBomba.ElementAt(i);
+                if (clnt.Client_ID.Equals(client.Client_ID))
+                {
+                    clnt.medList.Remove(med);
+                }
+            }
+        }
+
+
+
+        public void CheckoutLaBomba(Client client)
+        {
+            for (int i = 0; i < clientListLaBomba.Count; i++)
+            {
+                Client clnt = clientListLaBomba.ElementAt(i);
+                if (clnt.Client_ID.Equals(client.Client_ID))
+                {
+                    clnt.medList.Clear();
+                }
+            }
+        }
+
+
+// ------------------------------------------ Pischell ----------------------------------------------------------------------
+  
         public void AddPhischelClient(Client client)
         {
             clientListPhischel.Add(client);
@@ -201,6 +295,20 @@ namespace GasStationPharmacyRestServer.Models
                 }
             }
             Console.WriteLine("There isn't a client registered to that ID number");
+            return null;
+        }
+
+        public List<Medicine> GetPhichelClientMedicineList(int id)
+        {
+            for (int i = 0; i < clientListPhischel.Count; i++)
+            {
+                Client clnt = clientListPhischel.ElementAt(i);
+                if (clnt.Client_ID.Equals(id))
+                {
+
+                    return clientListPhischel.ElementAt(i).medList;
+                }
+            }
             return null;
         }
 
@@ -246,6 +354,18 @@ namespace GasStationPharmacyRestServer.Models
             }
         }
 
+        public void UpdatePhischelClientBirthDate(Client client, DateTime bd)
+        {
+            for (int i = 0; i < clientListPhischel.Count; i++)
+            {
+                Client clnt = clientListPhischel.ElementAt(i);
+                if (clnt.Client_ID.Equals(client.Client_ID))
+                {
+                    clnt.Client_Birthday = bd; 
+                }
+            }
+        }
+
         public void UpdatePhischelClientInfo(Client client, string info)
         {
             for (int i = 0; i < clientListPhischel.Count; i++)
@@ -257,6 +377,7 @@ namespace GasStationPharmacyRestServer.Models
                 }
             }
         }
+
 
         public void UpdatePhischelClientEmail(Client client, string email)
         {
@@ -278,6 +399,56 @@ namespace GasStationPharmacyRestServer.Models
                 if (clnt.Client_ID.Equals(client.Client_ID))
                 {
                     clnt.Account_Password = password;
+                }
+            }
+        }
+
+        public void UpdatePhischelClientPhone(Client client, int num)
+        {
+            for (int i = 0; i < clientListPhischel.Count; i++)
+            {
+                Client clnt = clientListPhischel.ElementAt(i);
+                if (clnt.Client_ID.Equals(client.Client_ID))
+                {
+                    clnt.Client_Phone_Number = num;
+                }
+            }
+        }
+
+        public void AddPhischelClientMed(Client client, Medicine med)
+        {
+            for (int i = 0; i < clientListPhischel.Count; i++)
+            {
+                Client clnt = clientListPhischel.ElementAt(i);
+                if (clnt.Client_ID.Equals(client.Client_ID))
+                {
+                    clnt.medList.Add(med);
+                }
+            }
+        }
+
+        public void RemovePhischelClientMed(Client client, Medicine med)
+        {
+            for (int i = 0; i < clientListPhischel.Count; i++)
+            {
+                Client clnt = clientListPhischel.ElementAt(i);
+                if (clnt.Client_ID.Equals(client.Client_ID))
+                {
+                    clnt.medList.Remove(med);
+                }
+            }
+        }
+
+
+
+        public void CheckoutPhischell(Client client)
+        {
+            for (int i = 0; i < clientListPhischel.Count; i++)
+            {
+                Client clnt = clientListPhischel.ElementAt(i);
+                if (clnt.Client_ID.Equals(client.Client_ID))
+                {
+                    clnt.medList.Clear();
                 }
             }
         }

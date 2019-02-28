@@ -15,8 +15,16 @@ namespace GasStationPharmacyRestServer.Models
         public DateTime Client_Birthday { get; set; }
         public string Client_Address { get; set; }
         public string Client_Additional_Information { get; set; }
+        public int Client_Phone_Number { get; set; }
         public string Account_Email { get; set; }
         public string Account_Password { get; set; }
+
+        public List<Medicine> medList;
+
+        public Client()
+        {
+            medList = new List<Medicine>();
+        }
 
     }
 }

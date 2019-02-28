@@ -53,6 +53,7 @@ namespace GasStationPharmacyRestServer.Models
             }
         }
 
+//----------------------------------------- Pischell -----------------------------------------------
 
         public void AddPhischelDoctor(Doctor doctor)
         {
@@ -124,10 +125,24 @@ namespace GasStationPharmacyRestServer.Models
                 Doctor doc = docListPhischel.ElementAt(i);
                 if (doc.Doctor_DID.Equals(doctor.Doctor_DID))
                 {
-                    doc.Doctor_First_Name = address;
+                    doc.Doctor_Address = address;
                 }
             }
         }
+
+        public void UpdatePhischelDoctorBirthDate(Doctor doctor, DateTime bd)
+        {
+            for (int i = 0; i < docListPhischel.Count; i++)
+            {
+                Doctor doc = docListPhischel.ElementAt(i);
+                if (doc.Doctor_DID.Equals(doctor.Doctor_DID))
+                {
+                    doc.Doctor_Birthday = bd;
+                }
+            }
+        }
+
+//--------------------------------------------- La Bomba ------------------------------------------
 
 
         public void AddLaBombaDoctor(Doctor doctor)
@@ -200,7 +215,19 @@ namespace GasStationPharmacyRestServer.Models
                 Doctor doc = docListLaBomba.ElementAt(i);
                 if (doc.Doctor_DID.Equals(doctor.Doctor_DID))
                 {
-                    doc.Doctor_First_Name = address;
+                    doc.Doctor_Address = address;
+                }
+            }
+        }
+
+        public void UpdateLaBombaDoctorBirthDate(Doctor doctor, DateTime bd)
+        {
+            for (int i = 0; i < docListLaBomba.Count; i++)
+            {
+                Doctor doc = docListLaBomba.ElementAt(i);
+                if (doc.Doctor_DID.Equals(doctor.Doctor_DID))
+                {
+                    doc.Doctor_Birthday = bd;
                 }
             }
         }

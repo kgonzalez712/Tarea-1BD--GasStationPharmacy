@@ -13,9 +13,6 @@ namespace GasStationPharmacyRestServer.Models
 
         static MedicineRegister med_reg = null;
 
-
-
-
         private MedicineRegister()
         {
             medListPH = new List<Medicine>();
@@ -24,7 +21,7 @@ namespace GasStationPharmacyRestServer.Models
             Medicine a = new Medicine();
 
             a.Medicine_Name = "Paracetamol";
-            a.Medicine_Require_Prescription = 'n';
+            a.Medicine_Require_Prescription = "no";
             a.Medicine_Quantity = 100;
 
             medListPH.Add(a);
@@ -44,6 +41,7 @@ namespace GasStationPharmacyRestServer.Models
             }
         }
 
+//--------------------------------------- Phischell -------------------------------------------------------------------------
 
         public void AddMedicinePhyschel(Medicine med)
         {
@@ -84,6 +82,32 @@ namespace GasStationPharmacyRestServer.Models
             return medListPH;
         }
 
+        public void UpdatePhischelMedQuant(Medicine medicine, int num)
+        {
+            for (int i =0; i < medListPH.Count(); i++)
+            {
+                Medicine med = medListPH.ElementAt(i);
+                if (med.Medicine_Name.Equals(medicine.Medicine_Name))
+                {
+                    if (med.Medicine_Quantity == num)
+                    {
+                        med.Medicine_Quantity = 0;
+                    }
+                    if (med.Medicine_Quantity > num)
+                    {
+                        med.Medicine_Quantity = med.Medicine_Quantity - num;
+                    }
+                    else
+                    {
+                        med.Medicine_Quantity = 0;
+                    }
+                }
+            }
+        }
+
+//-------------------------------------- La Bomba -------------------------------------------------------------------------
+
+
         public void AddMedicineLaBomba(Medicine med)
         {
             medListLB.Add(med);
@@ -121,6 +145,29 @@ namespace GasStationPharmacyRestServer.Models
         public List<Medicine> GetAllMedicinesLaBomba()
         {
             return medListLB;
+        }
+
+        public void UpdateLaBombaMedQuant(Medicine medicine, int num)
+        {
+            for (int i = 0; i < medListLB.Count(); i++)
+            {
+                Medicine med = medListLB.ElementAt(i);
+                if (med.Medicine_Name.Equals(medicine.Medicine_Name))
+                {
+                    if (med.Medicine_Quantity == num)
+                    {
+                        med.Medicine_Quantity = 0;
+                    }
+                    if (med.Medicine_Quantity > num)
+                    {
+                        med.Medicine_Quantity = med.Medicine_Quantity - num;
+                    }
+                    else
+                    {
+                        med.Medicine_Quantity = 0;
+                    }
+                }
+            }
         }
 
     }
