@@ -4,8 +4,10 @@
 	<meta charset= "UTF-8"/>
 	<title>Phishel Pharmacy Registration</title>
 	<link rel="stylesheet" type="text/css" href="css/register.css">
+	<script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.6.9/angular.min.js"></script>
+	<script type="text/javascript" src="js/phishelMethods.js"></script>
 </head>
-<body>
+<body ng-app="myApp" ng-controller="appController">
 	<header>
 		<section id="navBar">
 			<span>Phishel</span>
@@ -17,36 +19,36 @@
 			<h1>Registration</h1>
 		</section>
 	</header>
-	<form id="registration" novalidate>
+	<form id="registration" ng-submit="userCreate()" novalidate>
 		<fieldset>
 			<legend>Register</legend>
 			<label>
 				Number Id
-				<input class="input" type="text" name="idNumber" pattern="[0-9]{9}" autocomplete="off" placeholder="154823419" required>
+				<input class="input" type="text" name="idNumber" pattern="[0-9]{1} ?[0-9]{4} ?[0-9]{4}" autocomplete="off" placeholder="x xxxx xxxx" required ng-model="user.Client_ID">
 			</label>
 			<label>
 				First Name
-				<input class="input" type="text" name="fName" autocomplete="off" required>
+				<input class="input" type="text" name="fName" autocomplete="off" required ng-model="user.Client_First_Name">
 			</label>
 			<label>
 				Last Name
-				<input class="input" type="text" name="lName" autocomplete="off" required>
+				<input class="input" type="text" name="lName" autocomplete="off" required ng-model="user.Client_Last_Name">
 			</label>
 			<label>
 				Residence Place
-				<input class="input" type="text" name="rPlace" autocomplete="off" required>
+				<input class="input" type="text" name="rPlace" autocomplete="off" required ng-model="user.Client_Address">
 			</label>
 			<label>
 				Birthdate
-				<input class="input" type="date" name="birth" autocomplete="off" required>
+				<input class="input" type="date" name="birth" autocomplete="off" required ng-model="user.Client_BirthDay">
 			</label>
 			<label>
 				Cell Phone
-				<input class="input" type="text" name="cPhone" pattern="[0-9]{8}" placeholder="22228888" autocomplete="off" required>
+				<input class="input" type="text" name="cPhone" pattern="[0-9]{8}" placeholder="2222 8888" autocomplete="off" required ng-model="user.Client_Phone_Number">
 			</label>
 			<label>
 				Record
-				<input class="input" type="text" name="record" autocomplete="off" required>
+				<input class="input" type="text" name="record" autocomplete="off" required ng-model="user.Client_Additional_Info">
 			</label>
 			<input type="submit" name="submit" value="Register" class="choice">
 			<input type="reset" name="recet" value="Reset" class="choice">
