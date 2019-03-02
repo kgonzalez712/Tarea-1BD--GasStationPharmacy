@@ -1,11 +1,9 @@
 function activate(element, change) {
 	if (element.checked) {
-		document.getElementById(change).removeAttribute("disabled")
-		document.getElementById(change).value = 1;
+		document.getElementById(change).removeAttribute("disabled");
 	}
 	else{
 		document.getElementById(change).setAttribute("disabled","true");
-		document.getElementById(change).value = '';
 	}
 }
 
@@ -59,4 +57,11 @@ function checkUpdate(){
 		alert("You need to choose at least one medication!");
 		return false;
 	}
+}
+
+function putPath(){
+	document.getElementById("path").value = document.getElementById("file").value;
+}
+function putPathU(){
+	document.getElementById("pathU").value = document.getElementById("fileU").value;
 }

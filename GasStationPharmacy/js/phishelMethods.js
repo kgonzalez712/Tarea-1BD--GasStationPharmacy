@@ -39,17 +39,36 @@ myApp.controller("appController",function($scope,$http){
 		});
 	};
 
-	$scope.userCreate = function(){
+	$scope.createUser = function(){
+		// $http({
+		// 	method: 'POST',
+		// 	url:'',
+		// 	data: $scope.user
+		// }).then(function successCallback(response){
+		// 	$scope.users.push(response.data);
+		// 	alert("User has created Successfully")
+		// }, function errorCallback(response){
+		// 	alert("Error while created User");
+		// 	alert($scope.user);
+		// });
+		$http.post('',$scope.user,{headers:{'Content-Type':'application/x-www-form-urlencoded'}}).then(function(response){});
+	};
+
+	$scope.createOrder = function(){
 		$http({
 			method: 'POST',
-			url:'http://localhost:63786/api/Clients/PH/NewClient',
-			data: $scope.user
+			url: '',
+			data: $scope.orderCreate
 		}).then(function successCallback(response){
-			$scope.users.push(response.data);
-			alert("User has created Successfully")
+			$scope.orders.push(response.data);
+			alert("Order has created Successfully")
 		}, function errorCallback(response){
-			alert("Error while created User");
-			alert($scope.user);
+			alert("Error while created Order");
+			alert($scope.orderCreate.pickupTime);
+			alert($scope.orderCreate.id);
+			alert($scope.orderCreate.acetaminofen);
+			alert($scope.orderCreate.acetaminofenCount);
+			alert(document.getElementById('file').value)
 		});
 	};
 });

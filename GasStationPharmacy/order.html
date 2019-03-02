@@ -7,8 +7,9 @@
 	<link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.7.2/css/all.css" integrity="sha384-fnmOCqbTlWIlj8LyTjo7mOUStjsKC4pOpQbqyi7RrhN7udi9RwhKkMHpvLbHG9Sr" crossorigin="anonymous">
 	<script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.6.9/angular.min.js"></script>
 	<script type="text/javascript" src="js/phiselOrder.js"></script>
+	<script type="text/javascript" src="js/phishelMethods.js"></script>
 </head>
-<body>
+<body ng-app="myApp" ng-controller="appController">
 	<header>
 		<section id="navBar">
 			<span>Phishel</span>
@@ -27,12 +28,12 @@
 			</nav>
 		</section>
 	</header>
-	<form id="enter_recipe">
+	<form id="enter_recipe" ng-submit="createOrder()">
 		<fieldset>
 			<legend>Order</legend>			
 			<label>
 				Pickup Branch
-				<select required>
+				<select required ng-model="orderCreate.pickupBranch">
 					<option value="">Choose...</option>
 					<option value="Autofarmacia Escazú">Autofarmacia Escazú</option>
 					<option value="Automercado Alajuela">Automercado Alajuela</option>
@@ -48,55 +49,55 @@
 			</label>
 			<label>
 				Name
-				<input class="input" type="text" name="clientName" autocomplete="off" required>
+				<input class="input" type="text" name="clientName" autocomplete="off" ng-model="orderCreate.name" required>
 			</label>
 			<label>
 				Preferred Phone
-				<input class="input" type="text" name="medications" pattern="[0-9]{8}" autocomplete="off" required>
+				<input class="input" type="text" name="medications" pattern="[0-9]{8}" autocomplete="off" ng-model="orderCreate.phone" required>
 			</label>
 			<label>
 				<label>
-					Aspirina<input type="checkbox" name="aspirina" style="display: inline-block; margin-left: 4%" class="medicine" id="aspirina" onchange="activate(this,'aspirinaCount')"><input type="number" style="width: 30px;" name="aspirinaCount" min="1" max="10" id="aspirinaCount" disabled>
+					Aspirina<input type="checkbox" name="aspirina" style="display: inline-block; margin-left: 4%" class="medicine" value="aspirina" id="aspirina" ng-model="orderCreate.aspirina" onchange="activate(this,'aspirinaCount')"><input type="number" style="width: 30px;" name="aspirinaCount" ng-model="orderCreate.aspirinaCount" id="aspirinaCount" min="0" max="10" disabled>
 				</label>
 				<label>
-					Acetaminofen<input type="checkbox" name="acetaminofen" style="display: inline-block; margin-left: 4%" class="medicine" id="acetaminofen" onchange="activate(this,'acetaminofenCount')"><input type="number" style="width: 30px;" name="acetaminofenCount" min="1" max="10" id="acetaminofenCount" disabled>
+					Acetaminofen<input type="checkbox" name="acetaminofen" style="display: inline-block; margin-left: 4%" class="medicine" value="acetaminofen" ng-model="orderCreate.acetaminofen" id="acetaminofen" onchange="activate(this,'acetaminofenCount')"><input type="number" style="width: 30px;" name="acetaminofenCount" ng-model="orderCreate.acetaminofenCount" id="acetaminofenCount" min="0" max="10" disabled>
 				</label>
 				<label>
-					Ibuprofeno<input type="checkbox" name="ibuprofeno" style="display: inline-block; margin-left: 4%" class="medicine" id="ibuprofeno" onchange="activate(this,'ibuprofenoCount')"><input type="number" style="width: 30px;" name="ibuprofenoCount" min="1" max="10" id="ibuprofenoCount" disabled>
+					Ibuprofeno<input type="checkbox" name="ibuprofeno" style="display: inline-block; margin-left: 4%" class="medicine" value="ibuprofeno" ng-model="orderCreate.ibuprofeno" id="ibuprofeno" onchange="activate(this,'ibuprofenoCount')"><input type="number" style="width: 30px;" name="ibuprofenoCount" ng-model="orderCreate.ibuprofenoCount" id="ibuprofenoCount" min="0" max="10" disabled>
 				</label>
 				<label>
-					Amoxicilina<input type="checkbox" name="amoxicilina" style="display: inline-block; margin-left: 4%" class="medicine" id="amoxicilina" onchange="activate(this,'amoxicilinaCount')"><input type="number" style="width: 30px;" name="amoxicilinaCount" min="1" max="10" id="amoxicilinaCount" disabled>
+					Amoxicilina<input type="checkbox" name="amoxicilina" style="display: inline-block; margin-left: 4%" class="medicine" value="amoxicilina" ng-model="orderCreate.amoxicilina" id="amoxicilina" onchange="activate(this,'amoxicilinaCount')"><input type="number" style="width: 30px;" name="amoxicilinaCount" ng-model="orderCreate.amoxicilinaCount" id="amoxicilinaCount" min="0" max="10" disabled>
 				</label>
 				<label>
-					Ramipril<input type="checkbox" name="ramipril" style="display: inline-block; margin-left: 4%" class="medicine" id="ramipril" onchange="activate(this,'ramiprilCount')"><input type="number" style="width: 30px;" name="ramiprilCount" min="1" max="10" id="ramiprilCount" disabled>
+					Ramipril<input type="checkbox" name="ramipril" style="display: inline-block; margin-left: 4%" class="medicine" value="ramipril" ng-model="orderCreate.ramipril" id="ramipril" onchange="activate(this,'ramiprilCount')"><input type="number" style="width: 30px;" name="ramiprilCount" ng-model="orderCreate.ramiprilCount" id="ramiprilCount" min="0" max="10" disabled>
 				</label>
 			</label>
 			<label>
 				Pickup Time
-				<input class="input" type="time" name="time" autocomplete="off" required>
+				<input class="input" type="time" name="time" autocomplete="off" ng-model="orderCreate.pickupTime" required>
 			</label>
 			<label>
 				Put the order's Id
-				<input class="input" type="number" name="number" autocomplete="off" required>
+				<input class="input" type="number" name="number" autocomplete="off" ng-model="orderCreate.id" required>
 			</label>
-			<input type="file" name="file" id="file">
+			<input type="file" name="file" id="file" onchange="putPath()">
+			<input type="text" name="path" id="path" ng-model="orderCreate.url" disabled>
 			<input type="submit" name="submit" value="Order" class="choice" onclick="return check();">
 			<input type="reset" name="recet" value="Reset" class="choice">
 			<label>Update an order? <input type="checkbox" name="update" id="update" onchange="updateRecipe()"></label>
 			<label>Eliminate an order? <input type="checkbox" name="eliminate" id="eliminate" onchange="eliminateRecipe()"></label>
 		</fieldset>		
 	</form>
-	<form id="update_recipe">
+	<form id="update_recipe" ng-submit="updateOrder()">
 		<fieldset>
 			<legend>Update Order</legend>
-			<div id="previewUpdate"></div>
 			<label>
 				Order's Id
-				<input class="input" type="number" name="number" autocomplete="off" required>
+				<input class="input" type="number" name="number" autocomplete="off" ng-model="orderUpdate.id" required>
 			</label>
 			<label>
 				Pickup Branch
-				<select required>
+				<select required ng-model="orderUpdate.pickupBranch">
 					<option value="">Choose...</option>
 					<option value="Autofarmacia Escazú">Autofarmacia Escazú</option>
 					<option value="Automercado Alajuela">Automercado Alajuela</option>
@@ -112,49 +113,53 @@
 			</label>
 			<label>
 				Name
-				<input class="input" type="text" name="clientName" autocomplete="off" required>
+				<input class="input" type="text" name="clientName" autocomplete="off" ng-model="orderUpdate.name" required>
 			</label>
 			<label>
 				Preferred Phone
-				<input class="input" type="text" name="medications" pattern="[0-9]{8}" autocomplete="off" required>
+				<input class="input" type="text" name="medications" pattern="[0-9]{8}" autocomplete="off" ng-model="orderUpdate.phone" required>
 			</label>
 			<label>
 				<label>
-					Aspirina<input type="checkbox" name="aspirina" style="display: inline-block; margin-left: 4%" id="aspirina" class="medicineUpdate" onchange="activate(this,'aspirinaCount')"><input type="number" style="width: 30px;" name="aspirinaCount" id="aspirinaCount" disabled>
+					Aspirina<input type="checkbox" name="aspirina" style="display: inline-block; margin-left: 4%" class="medicine" value="aspirina" id="aspirina" ng-model="orderUpdate.aspirina" onchange="activate(this,'aspirinaCount')"><input type="number" style="width: 30px;" name="aspirinaCount" ng-model="orderUpdate.aspirinaCount" id="aspirinaCount" min="0" max="10" disabled>
 				</label>
 				<label>
-					Acetaminofen<input type="checkbox" name="acetaminofen" style="display: inline-block; margin-left: 4%" class="medicineUpdate" id="acetaminofen" onchange="activate(this,'acetaminofenCount')"><input type="number" style="width: 30px;" name="acetaminofenCount" id="acetaminofenCount" disabled>
+					Acetaminofen<input type="checkbox" name="acetaminofen" style="display: inline-block; margin-left: 4%" class="medicine" value="acetaminofen" ng-model="orderUpdate.acetaminofen" id="acetaminofen" onchange="activate(this,'acetaminofenCount')"><input type="number" style="width: 30px;" name="acetaminofenCount" ng-model="orderUpdate.acetaminofenCount" id="acetaminofenCount" min="0" max="10" disabled>
 				</label>
 				<label>
-					Ibuprofeno<input type="checkbox" name="ibuprofeno" style="display: inline-block; margin-left: 4%" class="medicineUpdate" id="ibuprofeno" onchange="activate(this,'ibuprofenoCount')"><input type="number" style="width: 30px;" name="ibuprofenoCount" id="ibuprofenoCount" disabled>
+					Ibuprofeno<input type="checkbox" name="ibuprofeno" style="display: inline-block; margin-left: 4%" class="medicine" value="ibuprofeno" ng-model="orderUpdate.ibuprofeno" id="ibuprofeno" onchange="activate(this,'ibuprofenoCount')"><input type="number" style="width: 30px;" name="ibuprofenoCount" ng-model="orderUpdate.ibuprofenoCount" id="ibuprofenoCount" min="0" max="10" disabled>
 				</label>
 				<label>
-					Amoxicilina<input type="checkbox" name="amoxicilina" style="display: inline-block; margin-left: 4%" class="medicineUpdate" id="amoxicilina" onchange="activate(this,'amoxicilinaCount')"><input type="number" style="width: 30px;" name="amoxicilinaCount" id="amoxicilinaCount" disabled>
+					Amoxicilina<input type="checkbox" name="amoxicilina" style="display: inline-block; margin-left: 4%" class="medicine" value="amoxicilina" ng-model="orderUpdate.amoxicilina" id="amoxicilina" onchange="activate(this,'amoxicilinaCount')"><input type="number" style="width: 30px;" name="amoxicilinaCount" ng-model="orderUpdate.amoxicilinaCount" id="amoxicilinaCount" min="0" max="10" disabled>
 				</label>
 				<label>
-					Ramipril<input type="checkbox" name="ramipril" style="display: inline-block; margin-left: 4%" class="medicineUpdate" id="ramipril" onchange="activate(this,'ramiprilCount')"><input type="number" style="width: 30px;" name="ramiprilCount" id="ramiprilCount" disabled>
+					Ramipril<input type="checkbox" name="ramipril" style="display: inline-block; margin-left: 4%" class="medicine" value="ramipril" ng-model="orderUpdate.ramipril" id="ramipril" onchange="activate(this,'ramiprilCount')"><input type="number" style="width: 30px;" name="ramiprilCount" ng-model="orderUpdate.ramiprilCount" id="ramiprilCount" min="0" max="10" disabled>
 				</label>
 			</label>
 			<label>
 				Pickup Time
-				<input class="input" type="time" name="time" autocomplete="off" required>
+				<input class="input" type="time" name="time" autocomplete="off" ng-model="orderUpdate.pickupTime" required>
 			</label>
-			<input type="file" name="file" id="fileU">
+			<input type="file" name="file" id="fileU" onchange="putPathU()">
+			<input type="text" name="pathU" id="pathU" ng-model="orderUpdate.url" disabled>
 			<input type="submit" name="submit" value="Update" class="choice" onclick="return checkUpdate()">
 			<input type="reset" name="recet" value="Reset" class="choice">
 		</fieldset>		
 	</form>
-	<form id="eliminate_recipe">
+	<form id="eliminate_recipe" ng-submit="deleteOrder()">
 		<fieldset>
 			<legend>Eliminate Order</legend>
 			<label>
 				Order's Id
-				<input class="input" type="Number" name="recipeNumber" autocomplete="off" required>
+				<input class="input" type="Number" name="recipeNumber" autocomplete="off" ng-model="orderDelete.id" required>
 			</label>
 			<input type="submit" name="submit" value="Delete" class="choice">
 		</fieldset>		
 	</form>
 </body>
+<script type="text/javascript">
+	
+</script>
 <footer>
 	&copy;Derechos Reservados
 </footer>
