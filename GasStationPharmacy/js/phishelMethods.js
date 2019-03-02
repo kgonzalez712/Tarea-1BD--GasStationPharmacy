@@ -49,7 +49,7 @@ myApp.controller("appController",function($scope,$http){
 			alert("User has created Successfully")
 		}, function errorCallback(response){
 			alert("Error while created User");
-			alert($scope.user.Client_Address);
+			alert($scope.user);
 		});
 	};
 });

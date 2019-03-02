@@ -19,7 +19,7 @@
 			<h1>Registration</h1>
 		</section>
 	</header>
-	<form id="registration" ng-submit="userCreate()" novalidate>
+	<form id="registration" ng-submit="userCreate()" >
 		<fieldset>
 			<legend>Register</legend>
 			<label>
@@ -33,6 +33,14 @@
 			<label>
 				Last Name
 				<input class="input" type="text" name="lName" autocomplete="off" required ng-model="user.Client_Last_Name">
+			</label>
+			<label>
+				Email
+				<input class="input" type="email" name="email" autocomplete="off" required ng-model="user.Client_Account_Email">
+			</label>
+			<label>
+				Password
+				<input class="input" type="Password" name="password" autocomplete="off" required ng-model="user.Client_Account_Password">
 			</label>
 			<label>
 				Residence Place
