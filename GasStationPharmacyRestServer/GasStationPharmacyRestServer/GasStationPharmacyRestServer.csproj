@@ -91,12 +91,18 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="App_Start\WebApiConfig.cs" />
+    <Compile Include="Controllers\AdminController.cs" />
+    <Compile Include="Controllers\BranchOfficeController.cs" />
     <Compile Include="Controllers\ClientController.cs" />
     <Compile Include="Controllers\DoctorController.cs" />
     <Compile Include="Controllers\MedicineController.cs" />
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
+    <Compile Include="Models\Administrator.cs" />
+    <Compile Include="Models\AdminRegister.cs" />
+    <Compile Include="Models\BranchOffice.cs" />
+    <Compile Include="Models\BranchOfficeRegister.cs" />
     <Compile Include="Models\Client.cs" />
     <Compile Include="Models\ClientRegister.cs" />
     <Compile Include="Models\Doctor.cs" />

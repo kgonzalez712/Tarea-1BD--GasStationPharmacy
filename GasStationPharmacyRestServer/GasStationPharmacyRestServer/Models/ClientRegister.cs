@@ -9,7 +9,6 @@ namespace GasStationPharmacyRestServer.Models
     {
         List<Client> clientListLaBomba;
         List<Client> clientListPhischel;
-        public int i = 0;
         static ClientRegister client_reg = null;
 
         private ClientRegister()

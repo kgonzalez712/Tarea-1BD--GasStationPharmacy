@@ -42,7 +42,7 @@ myApp.controller("appController",function($scope,$http){
 	$scope.userCreate = function(){
 		$http({
 			method: 'POST',
-			url:'',
+			url:'http://localhost:63786/api/Clients/PH/NewClient',
 			data: $scope.user
 		}).then(function successCallback(response){
 			$scope.users.push(response.data);

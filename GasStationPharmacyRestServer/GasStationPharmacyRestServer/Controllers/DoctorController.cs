@@ -9,7 +9,7 @@ using System.Web.Http.Cors;
 
 namespace GasStationPharmacyRestServer.Controllers
 {
-    [EnableCors(origins: "http://mywebclient.azurewebsites.net", headers: "*", methods: "*")]
+    [EnableCors(origins: "http://localhost:63786", headers: "*", methods: "*")]
 
     [RoutePrefix("api/Doctors")]
     public class DoctorController : ApiController
