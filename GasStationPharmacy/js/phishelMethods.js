@@ -11,6 +11,8 @@ myApp.controller("appController",function($scope,$http){
 			alert("Recipe has created Successfully")
 		}, function errorCallback(response){
 			alert("Error while created Recipe");
+			alert($scope.recipeCreate.url);
+
 		});
 	};
 
@@ -40,18 +42,17 @@ myApp.controller("appController",function($scope,$http){
 	};
 
 	$scope.createUser = function(){
-		// $http({
-		// 	method: 'POST',
-		// 	url:'',
-		// 	data: $scope.user
-		// }).then(function successCallback(response){
-		// 	$scope.users.push(response.data);
-		// 	alert("User has created Successfully")
-		// }, function errorCallback(response){
-		// 	alert("Error while created User");
-		// 	alert($scope.user);
-		// });
-		$http.post('',$scope.user,{headers:{'Content-Type':'application/x-www-form-urlencoded'}}).then(function(response){});
+		$http({
+			method: 'POST',
+			url:'http://192.168.100.18:54014/api/Clients/Phischel/NewClient',
+			data: $scope.user
+		}).then(function successCallback(response){
+			$scope.users.push(response.data);
+			alert("User has created Successfully")
+		}, function errorCallback(response){
+			alert("Error while created User");
+		});
+		// $http.post('',$scope.user,{headers:{'Content-Type':'application/x-www-form-urlencoded'}}).then(function(response){});
 	};
 
 	$scope.createOrder = function(){
@@ -68,7 +69,8 @@ myApp.controller("appController",function($scope,$http){
 			alert($scope.orderCreate.id);
 			alert($scope.orderCreate.acetaminofen);
 			alert($scope.orderCreate.acetaminofenCount);
-			alert(document.getElementById('file').value)
+			alert($scope.orderCreate.url);
 		});
 	};
+
 });

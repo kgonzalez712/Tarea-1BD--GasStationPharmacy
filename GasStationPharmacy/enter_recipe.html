@@ -8,6 +8,7 @@
 	<script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.6.9/angular.min.js"></script>
 	<script type="text/javascript" src="js/phisel.js"></script>
 	<script type="text/javascript" src="js/phishelMethods.js"></script>
+	<script type="text/javascript" src="js/phiselOrder.js"></script>
 	<style type="text/css">
 		.thumb{
 			height: 400px;
@@ -55,7 +56,8 @@
 			</label>
 			<input type="submit" name="submit" value="Add" class="choice">
 			<input type="reset" name="recet" value="Reset" class="choice">
-			<input type="file" name="file" class="choice" id="file" ng-model="recipeCreate.url">
+			<input type="file" name="file" class="choice" id="file" onchange="putPath()">
+			<input type="text" name="path" id="path" ng-model="recipeCreate.url" disabled>
 			<script type="text/javascript">
 				function archivo(evt) {
       				var files = evt.target.files; // FileList object
@@ -106,7 +108,8 @@
 			</label>
 			<input type="submit" name="submit" value="Update" class="choice">
 			<input type="reset" name="recet" value="Reset" class="choice">
-			<input type="file" name="file" class="choice" id="fileU" ng-model="recipeUpdate.url">
+			<input type="file" name="file" class="choice" id="fileU" onchange="putPathU()">
+			<input type="text" name="pathU" id="pathU" ng-model="recipeUpdate.url" disabled> 
 			<script type="text/javascript">
 				function archivo(evt) {
       				var files = evt.target.files; // FileList object
