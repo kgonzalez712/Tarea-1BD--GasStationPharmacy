@@ -5,7 +5,7 @@ myApp.controller("appController",function($scope,$http){
 	$scope.createRecipe = function(){
 		$http({
 			method: 'POST',
-			url: 'http://' + URL + '/GasStationPharmacyWS/api/Recipes/Phischel/NewRecipe',
+			url: 'http://' + URL + '/GasStationPharmacyWS/api/Recipes/BombaTica/NewRecipe',
 			data: $scope.recipeCreate
 		}).then(function successCallback(response){
 			alert("Recipe has created Successfully")
@@ -17,7 +17,7 @@ myApp.controller("appController",function($scope,$http){
 	$scope.updateRecipe = function(){
 		$http({
 			method: 'PUT',
-			url: 'http://' + URL + '/GasStationPharmacyWS/api/Recipes/Phischel/' + $scope.recipeUpdate.RecipeNumber + '/UpdateRecipe',
+			url: 'http://' + URL + '/GasStationPharmacyWS/api/Recipes/BombaTica/' + $scope.recipeUpdate.RecipeNumber + '/UpdateRecipe',
 			data: $scope.recipeUpdate
 		}).then(function successCallback(response){
 			alert("Recipe has updated Successfully")
@@ -29,7 +29,7 @@ myApp.controller("appController",function($scope,$http){
 	$scope.deleteRecipe = function(){
 		$http({
 			method: 'DELETE',
-			url:'http://' + URL + '/GasStationPharmacyWS/api/Recipes/Phischel/' + $scope.recipeDelete.RecipeNumber + '/DeleteRecipe'
+			url:'http://' + URL + '/GasStationPharmacyWS/api/Recipes/BombaTica/' + $scope.recipeDelete.RecipeNumber + '/DeleteRecipe'
 		}).then(function successCallback(response){
 			alert("Recipe has deleted Successfully");
 		}, function errorCallback(response){
@@ -40,7 +40,7 @@ myApp.controller("appController",function($scope,$http){
 	$scope.createUser = function(){
 		$http({
 			method: 'POST',
-			url:'http://' + URL + '/GasStationPharmacyWS/api/Clients/Phischel/NewClient',
+			url:'http://' + URL + '/GasStationPharmacyWS/api/Clients/BombaTica/NewClient',
 			data: $scope.user
 		}).then(function successCallback(response){
 			alert("User has created Successfully")
@@ -53,7 +53,7 @@ myApp.controller("appController",function($scope,$http){
 	$scope.createOrder = function(){
 		$http({
 			method: 'POST',
-			url: 'http://' + URL + '/GasStationPharmacyWS/api/Orders/Phischel/NewOrder',
+			url: 'http://' + URL + '/GasStationPharmacyWS/api/Orders/BombaTica/NewOrder',
 			data: $scope.orderCreate
 		}).then(function successCallback(response){
 			alert("Order has created Successfully");
@@ -65,7 +65,7 @@ myApp.controller("appController",function($scope,$http){
 	$scope.deleteOrder = function(){
 		$http({
 			method: 'DELETE',
-			url:'http://' + URL + '/GasStationPharmacyWS/api/Orders/Phischel/' + $scope.orderDelete.OrderId + '/DeleteOrder'
+			url:'http://' + URL + '/GasStationPharmacyWS/api/Orders/BombaTica/' + $scope.orderDelete.OrderId + '/DeleteOrder'
 		}).then(function successCallback(response){
 			alert("Order has deleted Successfully");
 		}, function errorCallback(response){
@@ -76,7 +76,7 @@ myApp.controller("appController",function($scope,$http){
 	$scope.updateOrder = function(){
 		$http({
 			method: 'PUT',
-			url: 'http://' + URL + '/GasStationPharmacyWS/api/Orders/Phischel/' + $scope.orderUpdate.OrderId + '/UpdateOrder',
+			url: 'http://' + URL + '/GasStationPharmacyWS/api/Orders/BombaTica/' + $scope.orderUpdate.OrderId + '/UpdateOrder',
 			data: $scope.orderUpdate
 		}).then(function successCallback(response){
 			alert("Recipe has updated Successfully")
